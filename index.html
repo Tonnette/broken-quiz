@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Quiz</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="./css/reset.css">
+    <link rel="stylesheet" type="text/css" href="./css/style.css">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <header>
+                    <h1>Quiz</h1>
+                </header>
+            </div>
+        </div>
+        <div class="row">
+                <p class= "score" >score</p>
+            <div class="col-lg-12 bigBox">
+                
+                <div class="grid">
+                    <div id="quiz">
+                        <p id="question"></p>
+                        <div class="col-lg-12">
+                            <div class="buttons">
+                                <p id = "myButtonInvention" ></p>
+                                <button id="btn1" class="btn-choice" value="1"><span id="choice0"></span></button>
+                                <button id="btn2" class="btn-choice" value="2"><span id="choice1"></span></button>
+                                <button id="btn3" class="btn-choice" value="3"><span id="choice2"></span></button>
+                                <button id="btn4" class="btn-choice" value="4"><span id="choice3"></span></button>
+                            </div>
+                        </div>
+                        <hr style="margin-top: 50px">
+                        <footer>
+                            <p id="progress">Queston x of y</p>
+                        </footer>
+
+                    </div>
+
+
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+    <script src="quiz_controller.js"></script>
+    <script src="question.js"></script>
+    <script src="app.js"></script>
+</body>
+
+</html>
