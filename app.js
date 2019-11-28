@@ -3,8 +3,6 @@ $(".startQuizButton").on("click", function () {
     $(".quiz-has-started").show();
 
 })
-
-
 var questionAnswerRoundOne = [
     {
         "question": "Commonly used data types DO NOT inlcude:",
@@ -170,12 +168,11 @@ $(".btn-choice-round-4").on("click", function () {
 })
 // User Answers Round-5
 $(".btn-choice-round-5").on("click", function () {
-    $("#fifth").hide();
-    $(".fifth-question").hide();
-    $("#progress").hide();
-    $("#question").text("GAME OVER");
-
-
+$(".buttons").hide();
+$("#progress").hide();
+$(".quiz-title").hide();
+    $(".quiz-is-over").show();
+   
     // We get the value associated with the button the user picked from here
     var userPick = $(this).val();
     console.log("user Pick: " + userPick);
@@ -188,6 +185,8 @@ $(".btn-choice-round-5").on("click", function () {
         $(".score").text("score = " + score + "/5");
         console.log(score);
     }
+
+    
 })
 
 

@@ -79,6 +79,10 @@ button {
     display: none;
 }
 
+.quiz-is-over{
+    display: none;
+}
+
 #progress{
     color: grey;
     font-size: 20px;
