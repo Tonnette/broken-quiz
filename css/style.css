@@ -88,6 +88,9 @@ button {
     border: 2px solid grey;
     text-align: center;
 }
+.highscores{
+    display: none;
+}
 
 
 #progress{

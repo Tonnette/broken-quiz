@@ -67,7 +67,7 @@ $("#btn20").text(questionAnswerRoundFive[0].choices[3]);
 
 //timer
 $(document).ready(function () {
-    var timer = setInterval(function () {   
+    var timer = setInterval(function () {
         var count = parseInt($('.quiz-timer').html());
         if (count !== 0) {
             $('.quiz-timer').html(count - 1);
@@ -75,6 +75,7 @@ $(document).ready(function () {
             clearInterval(timer);
         }
     }, 1000);
+    
 
     // User Answers Round-1
     $(".btn-choice").on("click", function () {
@@ -178,14 +179,13 @@ $(document).ready(function () {
     // User Answers Round-5
     $(".btn-choice-round-5").on("click", function () {
         $(".buttons").hide();
-        $("#progress").hide();
         $(".quiz-is-over").show();
+        $("#progress").hide();
         $(".quiz-title").text("Quiz is over!");
-        $(".score").hide();
-        $(".quizFinalScore").text("Your final score is " + score + " /5" + " + " + timer);
-       
+
+
         clearInterval(timer);
-        
+
         // We get the value associated with the button the user picked from here
         var userPick = $(this).val();
         console.log("user Pick: " + userPick);
@@ -194,14 +194,24 @@ $(document).ready(function () {
         if (parseInt(userPick) === questionAnswerRoundFive[0].answer) {
             $("#progress").text("correct.");
             score++;
+            $(".quizFinalScore").text("Your final score is " + score + " /5" + " + " + timer);
 
             $(".score").text("score = " + score + "/5");
             console.log(score);
         }
 
-       
-
+        $(".userSubmit").on("click", function (event) {
+            event.preventDefault();
+            var userInitials = $(".myInitials").value;
+            $(".quiz-is-over").hide();
+            $(".quiz-timer").hide();
+            $(".score").hide();
+            $(".timerEquals").hide();
+            $(".highscores").show();
+            $(".quiz-title").text("Quiz");
+            localStorage.setItem("userInitials", userInitials);
+        });
 
 });
-})
+});
 
