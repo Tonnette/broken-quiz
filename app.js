@@ -75,7 +75,7 @@ $(document).ready(function () {
             clearInterval(timer);
         }
     }, 1000);
-    
+
 
     // User Answers Round-1
     $(".btn-choice").on("click", function () {
@@ -199,7 +199,7 @@ $(document).ready(function () {
             $(".score").text("score = " + score + "/5");
             console.log(score);
         }
-
+        // Submit Button
         $(".userSubmit").on("click", function (event) {
             event.preventDefault();
             var userInitials = $(".myInitials").value;
@@ -211,7 +211,25 @@ $(document).ready(function () {
             $(".quiz-title").text("Quiz");
             localStorage.setItem("userInitials", userInitials);
         });
+        // HighScores Page
+        function renderLastRegistered() {
+            var highScoresInput = localStorage.getItem("userInitials");
+            $(".highscores-text").text(highScoresInput);
+            
+        }
+        renderLastRegistered();
 
-});
+        $(".startQuizOverButton").on("click", function () {
+            $(".highscores").hide();
+            $(".quiz-has-started").show();
+            $(".score").show();
+            $(".timerEquals").show();
+            $(".quiz-timer").show();
+            $(".buttons").show();
+            $(".first-question").show();
+        })
+
+    });
+  
 });
 
