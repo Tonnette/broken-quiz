@@ -1,160 +1,244 @@
 
-function populate() {
+//function populate() {
 
-    var myQuestions = [("what colour is the sky?"), ("what is a dog?"), ("what colour is banana?"), ("what is my name"), ("what does HTML stand for?")];
-    var choicesOne = [("blue"), ("green"), ("purple"), ("orange")];
-    var choicesTwo = [("a fish"), ("a reptile"), ("a bird"), ("a mammal")]
-    var choicesThree = [("black"), ("orange"), ("yellow"), ("magenta")]
-    var choicesFour = [("Tonnette"), ("Mandy"), ("Mo"), ("Zayn")]
-    var choicesFive = [("Hyper Text Markup Language"), ("Have tea mark lane"), ("Hate Trees Media Loop"), ("Hang Tight Mellow Lad")]
-    var answers = [("blue"), ("animal"), ("yellow")];
-    answersIndex = 0;
-    myQuestionsNum = 0;
-    score = 0;
+var questionAnswerRoundOne = [
+    {
+        "question": "Commonly used data types DO NOT inlcude:",
+        "choices": ["strings", "booleans", "alerts", "numbers"],
+        "answer": 2
+    }];
+var questionAnswerRoundTwo = [
+    {
+        "question": "What is a communication device?",
+        "choices": ["door", "hat", "dest", "phone"],
+        "answer": 3
+    }];
+var questionAnswerRoundThree = [
+    {
+        "question": "What do phones do?",
+        "choices": ["make calls", "eat pasta", "drink wine", "vacuum"],
+        "answer": 0
+    }];
+var questionAnswerRoundFour = [
+    {
+        "question": "What do you find at the beach?",
+        "choices": ["fix cars", "make pies", "learn code", "sand"],
+        "answer": 3
+    }];
+var questionAnswerRoundFive = [{
+    "question": "Inside which HTML element do we put the JavaScript?",
+    "choices": ["<javascript>", "<html>", "<script>", "<js>"],
+    "answer": 2
+}];
 
-    for (var i = 0; i < myQuestions.length; i++) {
-        var myQuestionsNum = myQuestions[i];
-        console.log(myQuestionsNum);
-        var myQuestionsGoHere = document.getElementById("question");
-        myQuestionsGoHere.textContent = myQuestions[0];
+score = 0;
+let counter = 0;
+    $(".first-question").text(questionAnswerRoundOne[0].question);
+    $("#btn1").text(questionAnswerRoundOne[0].choices[0]);
+    $("#btn2").text(questionAnswerRoundOne[0].choices[1]);
+    $("#btn3").text(questionAnswerRoundOne[0].choices[2]);
+    $("#btn4").text(questionAnswerRoundOne[0].choices[3]);
+
+    $(".second-question").text(questionAnswerRoundTwo[0].question);
+    $("#btn5").text(questionAnswerRoundTwo[0].choices[0]);
+    $("#btn6").text(questionAnswerRoundTwo[0].choices[1]);
+    $("#btn7").text(questionAnswerRoundTwo[0].choices[2]);
+    $("#btn8").text(questionAnswerRoundTwo[0].choices[3]);
+
+    $(".third-question").text(questionAnswerRoundThree[0].question);
+    $("#btn9").text(questionAnswerRoundThree[0].choices[0]);
+    $("#btn10").text(questionAnswerRoundThree[0].choices[1]);
+    $("#btn11").text(questionAnswerRoundThree[0].choices[2]);
+    $("#btn12").text(questionAnswerRoundThree[0].choices[3]);
+
+    $(".forth-question").text(questionAnswerRoundFour[0].question);
+    $("#btn9").text(questionAnswerRoundFour[0].choices[0]);
+    $("#btn10").text(questionAnswerRoundFour[0].choices[1]);
+    $("#btn11").text(questionAnswerRoundFour[0].choices[2]);
+    $("#btn12").text(questionAnswerRoundFour[0].choices[3]);
+
+    $(".fifth-question").text(questionAnswerRoundFive[0].question);
+    $("#btn9").text(questionAnswerRoundFive[0].choices[0]);
+    $("#btn10").text(questionAnswerRoundFive[0].choices[1]);
+    $("#btn11").text(questionAnswerRoundFive[0].choices[2]);
+    $("#btn12").text(questionAnswerRoundFive[0].choices[3]);
+
+
+
+// User Answers Round-1
+$(".btn-choice").on("click", function () {
+    $("#first").hide();
+    $(".first-question").hide();
+    $(".btn-choice-round-2").show();
+    $(".second-question").show();
+  
+    // We get the value associated with the button the user picked from here
+    var userPick = $(this).val();
+    console.log("user Pick: " + userPick);
+
+    // If user picks matched the right answer
+    if (parseInt(userPick) === questionAnswerRoundOne[0].answer) {
+        $("#progress").text("correct.");
+        score++;
+
+        $(".score").text("score = " + score + "/5" );
+        console.log(score);
     }
-    $("#btn1").html(choicesOne[0]);
-    $("#btn2").html(choicesOne[1]);
-    $("#btn3").html(choicesOne[2]);
-    $("#btn4").html(choicesOne[3]);
-    $("#btn5").html(choicesTwo[0]);
-    $("#btn6").html(choicesTwo[1]);
-    $("#btn7").html(choicesTwo[2]);
-    $("#btn8").html(choicesTwo[3]);
-    $("#btn9").html(choicesThree[0]);
-    $("#btn10").html(choicesThree[1]);
-    $("#btn11").html(choicesThree[2]);
-    $("#btn12").html(choicesThree[3]);
-    $("#btn13").html(choicesFour[0]);
-    $("#btn14").html(choicesFour[1]);
-    $("#btn15").html(choicesFour[2]);
-    $("#btn16").html(choicesFour[3]);
-    $("#btn17").html(choicesFive[0]);
-    $("#btn18").html(choicesFive[1]);
-    $("#btn19").html(choicesFive[2]);
-    $("#btn20").html(choicesFive[3]);
+    // If the numbers did not match. You also let them know
+    else {
+        $("#progress").text("wrong!");
+    }
+})
 
-    // User Answers Round-1
-    $(".btn-choice").on("click", function () {
-        $(".btn-choice").hide();
-        $(".btn-choice-round-2").show();
-        myQuestionsGoHere.textContent = myQuestions[1];
-
-        // We get the value associated with the button the user picked from here
-        var userPick = $(this).val();
-        console.log("user Pick: " + userPick);
-
-        // If user picks matched the right answer
-        if (parseInt(userPick) === 1) {
-            $("#progress").text("correct.");
-            score++;
-
-            $(".score").text("score = " + score + "/" + myQuestions.length);
-            console.log(score);
-        }
-        // If the numbers did not match. You also let them know
-        else {
-            $("#progress").text("wrong!");
-        }
-    })
 // User Answers Round-2
-    $(".btn-choice-round-2").on("click", function () {
-        $(".btn-choice-round-2").hide();
-        $(".btn-choice-round-3").show();
-        myQuestionsGoHere.textContent = myQuestions[2];
+$(".btn-choice-round-2").on("click", function () {
+    $("#second").hide();
+    $(".second-question").hide();
+    $(".btn-choice-round-3").show();
+    $(".third-question").show();
+  
+    // We get the value associated with the button the user picked from here
+    var userPick = $(this).val();
+    console.log("user Pick: " + userPick);
 
-        // We get the value associated with the button the user picked from here
-        var userPick = $(this).val();
-        console.log("user Pick: " + userPick);
+    // If user picks matched the right answer
+    if (parseInt(userPick) === questionAnswerRoundTwo[0].answer) {
+        $("#progress").text("correct.");
+        score++;
 
-        // If your pick matched the computer's pick you let them know.
-        if (parseInt(userPick) === 4) {
-            $("#progress").text("correct.");
-            score++;
+        $(".score").text("score = " + score + "/5" );
+        console.log(score);
+    }
+    // If the numbers did not match. You also let them know
+    else {
+        $("#progress").text("wrong!");
+    }
+})
 
-            $(".score").text("score = " + score + "/" + myQuestions.length);
-            console.log(score);
-        }
-        // If the numbers did not match. You also let them know
-        else {
-            $("#progress").text("wrong!");
-        }
-    })
-    // User Answers Round-3
-    $(".btn-choice-round-3").on("click", function () {
-        $(".btn-choice-round-3").hide();
-        $(".btn-choice-round-4").show();
-        myQuestionsGoHere.textContent = myQuestions[3];
 
-        // We get the value associated with the button the user picked from here
-        var userPick = $(this).val();
-        console.log("user Pick: " + userPick);
 
-        // If your pick matched the computer's pick you let them know.
-        if (parseInt(userPick) === 3) {
-            $("#progress").text("correct.");
-            score++;
 
-            $(".score").text("score = " + score + "/" + myQuestions.length);
-            console.log(score);
-        }
-        // If the numbers did not match. You also let them know
-        else {
-            $("#progress").text("wrong!");
-        }
-    })
+    // for (let i = 0; i < questionAnswerRoundOne.length; i++) {
+    //     for (let j = 0; j < questionAnswerRoundOne[i].choices.length; j++) {
+    //         if (counter < 4) {
+    //             $(".btn-choice").each(function (index) {
+    //                 $(this).text(questionAnswerRoundOne[i].choices[index])
+    //             });
+    //             $(".first-question").html(questionAnswerRoundOne[i].question)
+    //         }
 
-        // User Answers Round-4
-        $(".btn-choice-round-4").on("click", function () {
-            $(".btn-choice-round-4").hide();
-            $(".btn-choice-round-5").show();
-            myQuestionsGoHere.textContent = myQuestions[4];
-    
-            // We get the value associated with the button the user picked from here
-            var userPick = $(this).val();
-            console.log("user Pick: " + userPick);
-    
-            // If your pick matched the computer's pick you let them know.
-            if (parseInt(userPick) === 1) {
-                $("#progress").text("correct.");
-                score++;
-    
-                $(".score").text("score = " + score + "/" + myQuestions.length);
-                console.log(score);
-            }
-            // If the numbers did not match. You also let them know
-            else {
-                $("#progress").text("wrong!");
-            }
-        })
+    //         if (counter > 4 && counter < 8) {
+    //             $(".btn-choice-round-2").each(function (index) {
+    //                 $(this).text(questionAnswer[i].choices[index])
+    //             });
+    //             $(".second-question").html(questionAnswer[i].question)
+    //         }
+    //         counter++
+    //         if (counter > 9 && counter < 12) {
+    //             $(".btn-choice-round-3").each(function (index) {
+    //                 $(this).text(questionAnswer[i].choices[index])
+    //             });
+    //             $(".third-question").html(questionAnswer[i].question)
+    //         }
+    //         counter++
+    //     }
+    // }
 
-        // User Answers Round-5
-        $(".btn-choice-round-5").on("click", function () {
-            $(".btn-choice-round-5").hide();
-            $("#progress").hide();
-            
-    
-            // We get the value associated with the button the user picked from here
-            var userPick = $(this).val();
-            console.log("user Pick: " + userPick);
-    
-            // If your pick matched the computer's pick you let them know.
-            if (parseInt(userPick) === 1) {
-                
-                score++;
-    
-                $(".score").text("score = " + score + "/" + myQuestions.length);
-                console.log(score);
-                $("#question").text("GAME OVER");
-            }
-          
-        })
-};
+// 
+//     // User Answers Round-2
+//     $(".btn-choice-round-2").on("click", function () {
+//         $(".second").hide();
+//         $(".btn-choice-round-3").show();
+//         myQuestionsGoHere.textContent = myQuestions[2];
 
-populate()
+//         // We get the value associated with the button the user picked from here
+//         var userPick = $(this).val();
+//         console.log("user Pick: " + userPick);
+
+//         // If your pick matched the computer's pick you let them know.
+//         if (parseInt(userPick) === 4) {
+//             $("#progress").text("correct.");
+//             score++;
+
+//             $(".score").text("score = " + score + "/" + myQuestions.length);
+//             console.log(score);
+//         }
+//         // If the numbers did not match. You also let them know
+//         else {
+//             $("#progress").text("wrong!");
+//         }
+//     })
+//     // User Answers Round-3
+//     $(".btn-choice-round-3").on("click", function () {
+//         $(".btn-choice-round-3").hide();
+//         $(".btn-choice-round-4").show();
+//         myQuestionsGoHere.textContent = myQuestions[3];
+
+//         // We get the value associated with the button the user picked from here
+//         var userPick = $(this).val();
+//         console.log("user Pick: " + userPick);
+
+//         // If your pick matched the computer's pick you let them know.
+//         if (parseInt(userPick) === 3) {
+//             $("#progress").text("correct.");
+//             score++;
+
+//             $(".score").text("score = " + score + "/" + myQuestions.length);
+//             console.log(score);
+//         }
+//         // If the numbers did not match. You also let them know
+//         else {
+//             $("#progress").text("wrong!");
+//         }
+//     })
+
+//     // User Answers Round-4
+//     $(".btn-choice-round-4").on("click", function () {
+//         $(".btn-choice-round-4").hide();
+//         $(".btn-choice-round-5").show();
+//         myQuestionsGoHere.textContent = myQuestions[4];
+
+//         // We get the value associated with the button the user picked from here
+//         var userPick = $(this).val();
+//         console.log("user Pick: " + userPick);
+
+//         // If your pick matched the computer's pick you let them know.
+//         if (parseInt(userPick) === 1) {
+//             $("#progress").text("correct.");
+//             score++;
+
+//             $(".score").text("score = " + score + "/" + myQuestions.length);
+//             console.log(score);
+//         }
+//         // If the numbers did not match. You also let them know
+//         else {
+//             $("#progress").text("wrong!");
+//         }
+//     })
+
+//     // User Answers Round-5
+//     $(".btn-choice-round-5").on("click", function () {
+//         $(".btn-choice-round-5").hide();
+//         $("#progress").hide();
+
+
+//         // We get the value associated with the button the user picked from here
+//         var userPick = $(this).val();
+//         console.log("user Pick: " + userPick);
+
+//         // If your pick matched the computer's pick you let them know.
+//         if (parseInt(userPick) === 1) {
+
+//             score++;
+
+//             $(".score").text("score = " + score + "/" + myQuestions.length);
+//             console.log(score);
+//             $("#question").text("GAME OVER");
+//         }
+
+//     })
+
+// };
+
+// populate()
 

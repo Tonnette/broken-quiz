@@ -68,6 +68,13 @@ button {
     display: none;
 }
 
+#hide {
+    display: none;
+}
+.hide {
+    display: none;
+}
+
 #progress{
     color: grey;
     font-size: 20px;
