@@ -27,10 +27,11 @@
             <div class="quiz-has-started">
                 <div class="col-lg-12">
                     <header>
-                           
+
                         <h1 class="quiz-title">Quiz</h1>
-                        <h3 class ="quiz-timer">75</h3>
-                        
+                        <h3 class="timerEquals">Timer: </h3>
+                        <h3 class="myQuiz quiz-timer">75</h3>
+
                     </header>
                 </div>
 
@@ -83,15 +84,11 @@
 
                                     </div>
                                     <div class="quiz-is-over">
-                                        <h1>Quiz is over</h1>
-                                        <h2>Your score is: </h2>
-                                        <h2>Your final scrore is: </h2>
+                                        <h2 class = "quizFinalScore">Your final scrore is: </h2>
                                         <form>
-                                            <div class="form-group">
-                                                <label for="exampleInputPassword1"></label>
-                                                <input type="password" class="form-control" id="exampleInputPassword1"
-                                                    placeholder="Enter Initials">
-                                            </div>
+                                            <input class="form-control myInitials" type="text" placeholder="put initials in here">
+                                            
+
                                             <button type="submit" class="btn btn-primary">Submit</button>
                                         </form>
                                     </div>
