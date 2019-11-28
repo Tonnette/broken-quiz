@@ -1,8 +1,20 @@
+var secondsElapsed = 0;
+
 $(".startQuizButton").on("click", function () {
     $(".my-starter-page").hide();
-    $(".quiz-has-started").show();
-
+    resetAllViews();
+    
 })
+function resetAllViews() {
+    $(".quiz-has-started").show();
+    $(".quiz-title").show();
+    $(".bigBox").show();
+    $(".quiz-timer").show();
+    $(".timerEquals").show();
+    $(".first-question").show();
+    timeLeft = 75;
+
+}
 var questionAnswerRoundOne = [
     {
         "question": "Commonly used data types DO NOT inlcude:",
@@ -32,7 +44,6 @@ var questionAnswerRoundFive = [{
     "choices": ["<javascript>", "<html>", "<script>", "<js>"],
     "answer": 2
 }];
-
 score = 0;
 let counter = 0;
 $(".first-question").text(questionAnswerRoundOne[0].question);
@@ -65,16 +76,20 @@ $("#btn18").text(questionAnswerRoundFive[0].choices[1]);
 $("#btn19").text(questionAnswerRoundFive[0].choices[2]);
 $("#btn20").text(questionAnswerRoundFive[0].choices[3]);
 
-//timer
 $(document).ready(function () {
-    var timer = setInterval(function () {
-        var count = parseInt($('.quiz-timer').html());
-        if (count !== 0) {
-            $('.quiz-timer').html(count - 1);
+//timer
+    var timeLeft = 75;
+    var elem = document.getElementById('quiz-timer');
+    var timerId = setInterval(countdown,1000);
+
+    function countdown(){
+        if (timeLeft ==0) {
+            clearTimeout(timerId);
         } else {
-            clearInterval(timer);
+            $(".quiz-timer").text(timeLeft + ' seconds remaining');
+            timeLeft--;
         }
-    }, 1000);
+    }
 
 
     // User Answers Round-1
@@ -99,6 +114,10 @@ $(document).ready(function () {
         // If the numbers did not match. You also let them know
         else {
             $("#progress").text("wrong!");
+            penalty();
+            //timerSeconds--
+            //rendertime()
+            //need to deduct time
         }
     })
 
@@ -124,6 +143,7 @@ $(document).ready(function () {
         // If the numbers did not match. You also let them know
         else {
             $("#progress").text("wrong!");
+            timeLeft -= 10;
         }
     })
 
@@ -149,6 +169,7 @@ $(document).ready(function () {
         // If the numbers did not match. You also let them know
         else {
             $("#progress").text("wrong!");
+            timeLeft -= 10;
         }
     })
 
@@ -174,6 +195,7 @@ $(document).ready(function () {
         // If the numbers did not match. You also let them know
         else {
             $("#progress").text("wrong!");
+            penalty();
         }
     })
     // User Answers Round-5
@@ -184,7 +206,9 @@ $(document).ready(function () {
         $(".quiz-title").text("Quiz is over!");
 
 
-        clearInterval(timer);
+        clearTimeout(timerId);
+        console.log("This is 5", timeLeft);
+    
 
         // We get the value associated with the button the user picked from here
         var userPick = $(this).val();
@@ -198,38 +222,56 @@ $(document).ready(function () {
 
             $(".score").text("score = " + score + "/5");
             console.log(score);
+            console.log(scoreTime);
         }
         // Submit Button
         $(".userSubmit").on("click", function (event) {
             event.preventDefault();
-            var userInitials = $(".myInitials").value;
             $(".quiz-is-over").hide();
             $(".quiz-timer").hide();
             $(".score").hide();
             $(".timerEquals").hide();
             $(".highscores").show();
             $(".quiz-title").text("Quiz");
-            localStorage.setItem("userInitials", userInitials);
+            //var userPrompt = prompt("enter your initials");
+            var score = 10;
+            var userInitials = document.querySelector(".myInitials").value;
+            //var userInitials = $(".myInitials").value;
+            localStorage.setItem("userInitials", userInitials, );
+            
+
+            // function keepscore() {
+            //     var currentScore = {
+            //         "name": userInitials,
+            //         "score": score
+            //     }
+            
+            
         });
         // HighScores Page
         function renderLastRegistered() {
+           // userInitials = document.querySelector(".myInitials").value;
+            //$(".highscores-text").text(userInitials);
             var highScoresInput = localStorage.getItem("userInitials");
-            $(".highscores-text").text(highScoresInput);
-            
+            var textEntered = document.querySelector(".highscores-text").value= highScoresInput;
+    console.log(textEntered);
+            //$(".highscores-text").text(highScoresInput);
+
         }
         renderLastRegistered();
 
         $(".startQuizOverButton").on("click", function () {
             $(".highscores").hide();
-            $(".quiz-has-started").show();
-            $(".score").show();
-            $(".timerEquals").show();
-            $(".quiz-timer").show();
-            $(".buttons").show();
-            $(".first-question").show();
+            $(".quiz-title").hide();
+            $(".bigBox").hide();
+            $(".my-starter-page").show();
         })
 
     });
-  
+
+    function penalty(){
+        timeLeft -= 10;
+      };
+
 });
 
