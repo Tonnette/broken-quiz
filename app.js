@@ -65,128 +65,143 @@ $("#btn18").text(questionAnswerRoundFive[0].choices[1]);
 $("#btn19").text(questionAnswerRoundFive[0].choices[2]);
 $("#btn20").text(questionAnswerRoundFive[0].choices[3]);
 
+//timer
+
+$(document).ready(function () {
+    var timer = setInterval(function () {
+     
+        var count = parseInt($('.quiz-timer').html());
+        if (count !== 0) {
+            $('.quiz-timer').html(count - 1);
+        } else {
+            clearInterval(timer);
+        }
+    }, 1000);
 
 
-// User Answers Round-1
-$(".btn-choice").on("click", function () {
-    $("#first").hide();
-    $(".first-question").hide();
-    $(".btn-choice-round-2").show();
-    $(".second-question").show();
 
-    // We get the value associated with the button the user picked from here
-    var userPick = $(this).val();
-    console.log("user Pick: " + userPick);
 
-    // If user picks matched the right answer
-    if (parseInt(userPick) === questionAnswerRoundOne[0].answer) {
-        $("#progress").text("correct.");
-        score++;
 
-        $(".score").text("score = " + score + "/5");
-        console.log(score);
-    }
-    // If the numbers did not match. You also let them know
-    else {
-        $("#progress").text("wrong!");
-    }
+    // User Answers Round-1
+    $(".btn-choice").on("click", function () {
+        $("#first").hide();
+        $(".first-question").hide();
+        $(".btn-choice-round-2").show();
+        $(".second-question").show();
+
+        // We get the value associated with the button the user picked from here
+        var userPick = $(this).val();
+        console.log("user Pick: " + userPick);
+
+        // If user picks matched the right answer
+        if (parseInt(userPick) === questionAnswerRoundOne[0].answer) {
+            $("#progress").text("correct.");
+            score++;
+
+            $(".score").text("score = " + score + "/5");
+            console.log(score);
+        }
+        // If the numbers did not match. You also let them know
+        else {
+            $("#progress").text("wrong!");
+        }
+    })
+
+    // User Answers Round-2
+    $(".btn-choice-round-2").on("click", function () {
+        $("#second").hide();
+        $(".second-question").hide();
+        $(".btn-choice-round-3").show();
+        $(".third-question").show();
+
+        // We get the value associated with the button the user picked from here
+        var userPick = $(this).val();
+        console.log("user Pick: " + userPick);
+
+        // If user picks matched the right answer
+        if (parseInt(userPick) === questionAnswerRoundTwo[0].answer) {
+            $("#progress").text("correct.");
+            score++;
+
+            $(".score").text("score = " + score + "/5");
+            console.log(score);
+        }
+        // If the numbers did not match. You also let them know
+        else {
+            $("#progress").text("wrong!");
+        }
+    })
+
+    // User Answers Round-3
+    $(".btn-choice-round-3").on("click", function () {
+        $("#third").hide();
+        $(".third-question").hide();
+        $(".btn-choice-round-4").show();
+        $(".forth-question").show();
+
+        // We get the value associated with the button the user picked from here
+        var userPick = $(this).val();
+        console.log("user Pick: " + userPick);
+
+        // If user picks matched the right answer
+        if (parseInt(userPick) === questionAnswerRoundThree[0].answer) {
+            $("#progress").text("correct.");
+            score++;
+
+            $(".score").text("score = " + score + "/5");
+            console.log(score);
+        }
+        // If the numbers did not match. You also let them know
+        else {
+            $("#progress").text("wrong!");
+        }
+    })
+
+    // User Answers Round-4
+    $(".btn-choice-round-4").on("click", function () {
+        $("#forth").hide();
+        $(".forth-question").hide();
+        $(".btn-choice-round-5").show();
+        $(".fifth-question").show();
+
+        // We get the value associated with the button the user picked from here
+        var userPick = $(this).val();
+        console.log("user Pick: " + userPick);
+
+        // If user picks matched the right answer
+        if (parseInt(userPick) === questionAnswerRoundFour[0].answer) {
+            $("#progress").text("correct.");
+            score++;
+
+            $(".score").text("score = " + score + "/5");
+            console.log(score);
+        }
+        // If the numbers did not match. You also let them know
+        else {
+            $("#progress").text("wrong!");
+        }
+    })
+    // User Answers Round-5
+    $(".btn-choice-round-5").on("click", function () {
+        $(".buttons").hide();
+        $("#progress").hide();
+        $(".quiz-title").hide();
+        $(".quiz-is-over").show();
+        clearInterval(timer);
+
+        // We get the value associated with the button the user picked from here
+        var userPick = $(this).val();
+        console.log("user Pick: " + userPick);
+
+        // If user picks matched the right answer
+        if (parseInt(userPick) === questionAnswerRoundFive[0].answer) {
+            $("#progress").text("correct.");
+            score++;
+
+            $(".score").text("score = " + score + "/5");
+            console.log(score);
+        }
+
+});
 })
-
-// User Answers Round-2
-$(".btn-choice-round-2").on("click", function () {
-    $("#second").hide();
-    $(".second-question").hide();
-    $(".btn-choice-round-3").show();
-    $(".third-question").show();
-
-    // We get the value associated with the button the user picked from here
-    var userPick = $(this).val();
-    console.log("user Pick: " + userPick);
-
-    // If user picks matched the right answer
-    if (parseInt(userPick) === questionAnswerRoundTwo[0].answer) {
-        $("#progress").text("correct.");
-        score++;
-
-        $(".score").text("score = " + score + "/5");
-        console.log(score);
-    }
-    // If the numbers did not match. You also let them know
-    else {
-        $("#progress").text("wrong!");
-    }
-})
-
-// User Answers Round-3
-$(".btn-choice-round-3").on("click", function () {
-    $("#third").hide();
-    $(".third-question").hide();
-    $(".btn-choice-round-4").show();
-    $(".forth-question").show();
-
-    // We get the value associated with the button the user picked from here
-    var userPick = $(this).val();
-    console.log("user Pick: " + userPick);
-
-    // If user picks matched the right answer
-    if (parseInt(userPick) === questionAnswerRoundThree[0].answer) {
-        $("#progress").text("correct.");
-        score++;
-
-        $(".score").text("score = " + score + "/5");
-        console.log(score);
-    }
-    // If the numbers did not match. You also let them know
-    else {
-        $("#progress").text("wrong!");
-    }
-})
-
-// User Answers Round-4
-$(".btn-choice-round-4").on("click", function () {
-    $("#forth").hide();
-    $(".forth-question").hide();
-    $(".btn-choice-round-5").show();
-    $(".fifth-question").show();
-
-    // We get the value associated with the button the user picked from here
-    var userPick = $(this).val();
-    console.log("user Pick: " + userPick);
-
-    // If user picks matched the right answer
-    if (parseInt(userPick) === questionAnswerRoundFour[0].answer) {
-        $("#progress").text("correct.");
-        score++;
-
-        $(".score").text("score = " + score + "/5");
-        console.log(score);
-    }
-    // If the numbers did not match. You also let them know
-    else {
-        $("#progress").text("wrong!");
-    }
-})
-// User Answers Round-5
-$(".btn-choice-round-5").on("click", function () {
-$(".buttons").hide();
-$("#progress").hide();
-$(".quiz-title").hide();
-    $(".quiz-is-over").show();
-   
-    // We get the value associated with the button the user picked from here
-    var userPick = $(this).val();
-    console.log("user Pick: " + userPick);
-
-    // If user picks matched the right answer
-    if (parseInt(userPick) === questionAnswerRoundFive[0].answer) {
-        $("#progress").text("correct.");
-        score++;
-
-        $(".score").text("score = " + score + "/5");
-        console.log(score);
-    }
-
-    
-})
-
 
