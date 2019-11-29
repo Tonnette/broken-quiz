@@ -3,7 +3,7 @@ var secondsElapsed = 0;
 $(".startQuizButton").on("click", function () {
     $(".my-starter-page").hide();
     resetAllViews();
-    
+
 })
 function resetAllViews() {
     $(".quiz-has-started").show();
@@ -77,13 +77,13 @@ $("#btn19").text(questionAnswerRoundFive[0].choices[2]);
 $("#btn20").text(questionAnswerRoundFive[0].choices[3]);
 
 $(document).ready(function () {
-//timer
+    //timer
     var timeLeft = 75;
     var elem = document.getElementById('quiz-timer');
-    var timerId = setInterval(countdown,1000);
+    var timerId = setInterval(countdown, 1000);
 
-    function countdown(){
-        if (timeLeft ==0) {
+    function countdown() {
+        if (timeLeft == 0) {
             clearTimeout(timerId);
         } else {
             $(".quiz-timer").text(timeLeft + ' seconds remaining');
@@ -208,7 +208,7 @@ $(document).ready(function () {
 
         clearTimeout(timerId);
         console.log("This is 5", timeLeft);
-    
+
 
         // We get the value associated with the button the user picked from here
         var userPick = $(this).val();
@@ -233,45 +233,51 @@ $(document).ready(function () {
             $(".timerEquals").hide();
             $(".highscores").show();
             $(".quiz-title").text("Quiz");
-            //var userPrompt = prompt("enter your initials");
-            var score = 10;
             var userInitials = document.querySelector(".myInitials").value;
-            //var userInitials = $(".myInitials").value;
-            localStorage.setItem("userInitials", userInitials, );
-            
 
-            // function keepscore() {
-            //     var currentScore = {
-            //         "name": userInitials,
-            //         "score": score
-            //     }
+            console.log('new initials: ' + userInitials)
+
             
             
-        });
-        // HighScores Page
-        function renderLastRegistered() {
-           // userInitials = document.querySelector(".myInitials").value;
-            //$(".highscores-text").text(userInitials);
+            // HighScores Page
+            var currentInitialsValue = localStorage.getItem("userInitials");
+            localStorage.setItem("userInitials", (currentInitialsValue + userInitials));
+
             var highScoresInput = localStorage.getItem("userInitials");
-            var textEntered = document.querySelector(".highscores-text").value= highScoresInput;
-    console.log(textEntered);
-            //$(".highscores-text").text(highScoresInput);
+            console.log(highScoresInput)
+            var textEntered = document.querySelector(".highscores-text");
+            textEntered.value = highScoresInput;
+            console.log('text entered' + textEntered.value);
 
-        }
-        renderLastRegistered();
 
-        $(".startQuizOverButton").on("click", function () {
-            $(".highscores").hide();
-            $(".quiz-title").hide();
-            $(".bigBox").hide();
-            $(".my-starter-page").show();
-        })
+            //clear High Scores
+            $(".clear-high-scores").on("click", function (){
+                textEntered.value = "";
+                localStorage.clear()
+            })
+
+        });
+
+
+        // userInitials = document.querySelector(".myInitials").value;
+        //$(".highscores-text").text(userInitials);
+
+        //$(".highscores-text").text(highScoresInput);
+
+
+
+        //     $(".startQuizOverButton").on("click", function () {
+        //         $(".highscores").hide();
+        //         $(".quiz-title").hide();
+        //         $(".bigBox").hide();
+        //         $(".my-starter-page").show();
+        //     })
 
     });
 
-    function penalty(){
+    function penalty() {
         timeLeft -= 10;
-      };
+    };
 
 });
 
