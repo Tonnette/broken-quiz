@@ -1,86 +1,6 @@
 
-$(".startQuizButton").on("click", function () {
-    $(".my-starter-page").hide();
-    $(".quiz-has-started").show();
-    resetAllViews();
-
-})
-function resetAllViews() {
-    $(".quiz-has-started").show();
-    $(".quiz-title").show();
-    $(".bigBox").show();
-    $(".quiz-timer").show();
-    $(".timerEquals").show();
-    $(".first-question").show();
-    $(".buttons").show();
-    $("#first").show();
-    $(".quiz-has-started").show()
-    timeLeft = 75;
-
-
-}
-var questionAnswerRoundOne = [
-    {
-        "question": "Commonly used data types DO NOT inlcude:",
-        "choices": ["strings", "booleans", "alerts", "numbers"],
-        "answer": 2
-    }];
-var questionAnswerRoundTwo = [
-    {
-        "question": "What is a communication device?",
-        "choices": ["door", "hat", "dest", "phone"],
-        "answer": 3
-    }];
-var questionAnswerRoundThree = [
-    {
-        "question": "What do phones do?",
-        "choices": ["make calls", "eat pasta", "drink wine", "vacuum"],
-        "answer": 0
-    }];
-var questionAnswerRoundFour = [
-    {
-        "question": "What do you find at the beach?",
-        "choices": ["fix cars", "make pies", "learn code", "sand"],
-        "answer": 3
-    }];
-var questionAnswerRoundFive = [{
-    "question": "Inside which HTML element do we put the JavaScript?",
-    "choices": ["<javascript>", "<html>", "<script>", "<js>"],
-    "answer": 2
-}];
-score = 0;
-let counter = 0;
-$(".first-question").text(questionAnswerRoundOne[0].question);
-$("#btn1").text(questionAnswerRoundOne[0].choices[0]);
-$("#btn2").text(questionAnswerRoundOne[0].choices[1]);
-$("#btn3").text(questionAnswerRoundOne[0].choices[2]);
-$("#btn4").text(questionAnswerRoundOne[0].choices[3]);
-
-$(".second-question").text(questionAnswerRoundTwo[0].question);
-$("#btn5").text(questionAnswerRoundTwo[0].choices[0]);
-$("#btn6").text(questionAnswerRoundTwo[0].choices[1]);
-$("#btn7").text(questionAnswerRoundTwo[0].choices[2]);
-$("#btn8").text(questionAnswerRoundTwo[0].choices[3]);
-
-$(".third-question").text(questionAnswerRoundThree[0].question);
-$("#btn9").text(questionAnswerRoundThree[0].choices[0]);
-$("#btn10").text(questionAnswerRoundThree[0].choices[1]);
-$("#btn11").text(questionAnswerRoundThree[0].choices[2]);
-$("#btn12").text(questionAnswerRoundThree[0].choices[3]);
-
-$(".forth-question").text(questionAnswerRoundFour[0].question);
-$("#btn13").text(questionAnswerRoundFour[0].choices[0]);
-$("#btn14").text(questionAnswerRoundFour[0].choices[1]);
-$("#btn15").text(questionAnswerRoundFour[0].choices[2]);
-$("#btn16").text(questionAnswerRoundFour[0].choices[3]);
-
-$(".fifth-question").text(questionAnswerRoundFive[0].question);
-$("#btn17").text(questionAnswerRoundFive[0].choices[0]);
-$("#btn18").text(questionAnswerRoundFive[0].choices[1]);
-$("#btn19").text(questionAnswerRoundFive[0].choices[2]);
-$("#btn20").text(questionAnswerRoundFive[0].choices[3]);
-
 $(document).ready(function () {
+
     //timer
     var timeLeft = 75;
     var elem = document.getElementById('quiz-timer');
@@ -95,13 +15,115 @@ $(document).ready(function () {
         }
     }
 
-    
+    $(".startQuizButton").on("click", function () {
+        $(".my-starter-page").hide();
+        $(".quiz-has-started").show();
+        resetAllViews();
+        countdown();
+
+
+    })
+    function resetAllViews() {
+        $(".quiz-has-started").show();
+        $(".quiz-title").show();
+        $(".bigBox").show();
+        $(".quiz-timer").show();
+        $(".timerEquals").show();
+        $(".first-question").show();
+        $(".buttons").show();
+        $("#first").show();
+        $(".hide").hide();
+        $("#hide").hide();
+        $(".btn-choice btn-choice-round-1").show();
+        $(".btn-choice btn-choice-round-2").hide();
+        $(".btn-choice btn-choice-round-3").hide();
+        $(".btn-choice btn-choice-round-4").hide();
+        $(".btn-choice btn-choice-round-5").hide();
+        $("#fifth").hide();
+        $(".btn-choice-round-1").show();
+        $(".quiz-has-started").show()
+        countdown()
+
+    }
+
+    var questionAnswerRoundOne = [
+        {
+            "question": "Commonly used data types DO NOT inlcude:",
+            "choices": ["strings", "booleans", "alerts", "numbers"],
+            "answer": 2
+        }];
+    var questionAnswerRoundTwo = [
+        {
+            "question": "What is a communication device?",
+            "choices": ["door", "hat", "dest", "phone"],
+            "answer": 3
+        }];
+    var questionAnswerRoundThree = [
+        {
+            "question": "What do phones do?",
+            "choices": ["make calls", "eat pasta", "drink wine", "vacuum"],
+            "answer": 0
+        }];
+    var questionAnswerRoundFour = [
+        {
+            "question": "What do you find at the beach?",
+            "choices": ["fix cars", "make pies", "learn code", "sand"],
+            "answer": 3
+        }];
+    var questionAnswerRoundFive = [{
+        "question": "Inside which HTML element do we put the JavaScript?",
+        "choices": ["<javascript>", "<html>", "<script>", "<js>"],
+        "answer": 2
+    }];
+    score = 0;
+    let counter = 0;
+    $(".first-question").text(questionAnswerRoundOne[0].question);
+    $("#btn1").text(questionAnswerRoundOne[0].choices[0]);
+    $("#btn2").text(questionAnswerRoundOne[0].choices[1]);
+    $("#btn3").text(questionAnswerRoundOne[0].choices[2]);
+    $("#btn4").text(questionAnswerRoundOne[0].choices[3]);
+
+    $(".second-question").text(questionAnswerRoundTwo[0].question);
+    $("#btn5").text(questionAnswerRoundTwo[0].choices[0]);
+    $("#btn6").text(questionAnswerRoundTwo[0].choices[1]);
+    $("#btn7").text(questionAnswerRoundTwo[0].choices[2]);
+    $("#btn8").text(questionAnswerRoundTwo[0].choices[3]);
+
+    $(".third-question").text(questionAnswerRoundThree[0].question);
+    $("#btn9").text(questionAnswerRoundThree[0].choices[0]);
+    $("#btn10").text(questionAnswerRoundThree[0].choices[1]);
+    $("#btn11").text(questionAnswerRoundThree[0].choices[2]);
+    $("#btn12").text(questionAnswerRoundThree[0].choices[3]);
+
+    $(".forth-question").text(questionAnswerRoundFour[0].question);
+    $("#btn13").text(questionAnswerRoundFour[0].choices[0]);
+    $("#btn14").text(questionAnswerRoundFour[0].choices[1]);
+    $("#btn15").text(questionAnswerRoundFour[0].choices[2]);
+    $("#btn16").text(questionAnswerRoundFour[0].choices[3]);
+
+    $(".fifth-question").text(questionAnswerRoundFive[0].question);
+    $("#btn17").text(questionAnswerRoundFive[0].choices[0]);
+    $("#btn18").text(questionAnswerRoundFive[0].choices[1]);
+    $("#btn19").text(questionAnswerRoundFive[0].choices[2]);
+    $("#btn20").text(questionAnswerRoundFive[0].choices[3]);
+
+
+
+
+
     // User Answers Round-1
     $(".btn-choice-round-1").on("click", function () {
         $("#first").hide();
         $(".first-question").hide();
         $(".btn-choice-round-2").show();
         $(".second-question").show();
+        $(".buttons").show();
+        $(".quiz-timer").show();
+        $(".timerEquals").show();
+        $(".quiz-has-started").show();
+        $(".quiz-title").show();
+        $(".timerEquals").show();
+        $("#second").show();
 
         // We get the value associated with the button the user picked from here
         var userPick = $(this).val();
@@ -112,7 +134,7 @@ $(document).ready(function () {
             $("#progress").text("correct.");
             score++;
 
-            $(".score").text("score = " + score + "/5");
+            $(".score").text("questions correct = " + score + "/5");
             console.log(score);
         }
         // If the numbers did not match. You also let them know
@@ -131,6 +153,12 @@ $(document).ready(function () {
         $(".second-question").hide();
         $(".btn-choice-round-3").show();
         $(".third-question").show();
+        $(".buttons").show();
+        $(".quiz-timer").show();
+        $(".timerEquals").show();
+        $(".quiz-has-started").show();
+        $(".quiz-title").show();
+        $("#third").show();
 
         // We get the value associated with the button the user picked from here
         var userPick = $(this).val();
@@ -141,7 +169,7 @@ $(document).ready(function () {
             $("#progress").text("correct.");
             score++;
 
-            $(".score").text("score = " + score + "/5");
+            $(".score").text("questions correct = " + score + "/5");("score = " + score + "/5");
             console.log(score);
         }
         // If the numbers did not match. You also let them know
@@ -157,6 +185,8 @@ $(document).ready(function () {
         $(".third-question").hide();
         $(".btn-choice-round-4").show();
         $(".forth-question").show();
+        $(".buttons").show();
+        $("#forth").show();
 
         // We get the value associated with the button the user picked from here
         var userPick = $(this).val();
@@ -167,7 +197,7 @@ $(document).ready(function () {
             $("#progress").text("correct.");
             score++;
 
-            $(".score").text("score = " + score + "/5");
+            $(".score").text("questions correct = " + score + "/5");
             console.log(score);
         }
         // If the numbers did not match. You also let them know
@@ -182,7 +212,10 @@ $(document).ready(function () {
         $("#forth").hide();
         $(".forth-question").hide();
         $(".btn-choice-round-5").show();
+        $("#fifth").show();
         $(".fifth-question").show();
+        $(".buttons").show();
+        $("#fifth").show();
 
         // We get the value associated with the button the user picked from here
         var userPick = $(this).val();
@@ -193,7 +226,7 @@ $(document).ready(function () {
             $("#progress").text("correct.");
             score++;
 
-            $(".score").text("score = " + score + "/5");
+            $(".score").text("questions correct = " + score + "/5");
             console.log(score);
         }
         // If the numbers did not match. You also let them know
@@ -250,55 +283,49 @@ $(document).ready(function () {
             var userData = {
                 userInials: userInitials.value,
                 score: timeLeft
-              };
+            };
 
-              console.log(userData);
-              localStorage.setItem("userData", JSON.stringify(userData));
+            console.log(userData);
+            localStorage.setItem("userData", JSON.stringify(userData));
 
             // HighScores Page
-        
-              lastUser = JSON.parse(localStorage.getItem("userData"));
-              var textEntered = document.querySelector(".highscores-text");
-              textEntered.textContent=lastUser.userInials + " " + "final score: " + lastUser.score;
-            //   var li = document.createElement("li");
-            //     li.innerHTML = lastUser.userInials;
 
-                
-                // $(".test").append(li)
-            //   var people = [{ name: "Bob" }];
-            // var currentId = 0;
-              
-              function addToHighScores() {
-                lastUser = JSON.parse(localStorage.getItem("userData"));
+            lastUser = JSON.parse(localStorage.getItem("userData"));
+            var textEntered = document.querySelector(".highscores-text");
+            textEntered.textContent = lastUser.userInials + " " + " - final score: " + lastUser.score;
+
+            function addToHighScores() {
                 var li = document.createElement("li");
-                li.innerHTML = textEntered.textContent=lastUser.userInials + " " + lastUser.score;
-                console.log(li.innerHTML);
                 $(".test").append(li);
-                
-                
-                
-                // 
-                // peopleListEl.append(li);
-              }
-
-              $(".add-to-scores").on("click", function(){
-                
-                addToHighScores();
+                li.innerHTML = textEntered.textContent
+                console.log(li.innerHTML);
+                    
             
-              });
+                
+                $(".highscores-text").text("");
+                userInitials.textContent="";
 
+            }
 
+            $(".add-to-scores").on("click", function () {
+                addToHighScores();
+            });
 
             //clear High Scores
             $(".clear-high-scores").on("click", function () {
                 textEntered.value = "";
                 localStorage.clear()
+                $(".test").text("High Scores");
             })
 
             //go back to the start
-            $(".startQuizOverButton").on("click", function() {
+            $(".startQuizOverButton").on("click", function () {
                 $(".highscores").hide();
                 $(".my-starter-page").show();
+                $(".bigBox").show();
+                $(".quiz-title").hide();
+                clearTimeout(timerId);
+                timeLeft = 75;
                 countdown();
             })
 
