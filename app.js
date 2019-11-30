@@ -1,7 +1,7 @@
-var secondsElapsed = 0;
 
 $(".startQuizButton").on("click", function () {
     $(".my-starter-page").hide();
+    $(".quiz-has-started").show();
     resetAllViews();
 
 })
@@ -12,7 +12,11 @@ function resetAllViews() {
     $(".quiz-timer").show();
     $(".timerEquals").show();
     $(".first-question").show();
+    $(".buttons").show();
+    $("#first").show();
+    $(".quiz-has-started").show()
     timeLeft = 75;
+
 
 }
 var questionAnswerRoundOne = [
@@ -91,9 +95,9 @@ $(document).ready(function () {
         }
     }
 
-
+    
     // User Answers Round-1
-    $(".btn-choice").on("click", function () {
+    $(".btn-choice-round-1").on("click", function () {
         $("#first").hide();
         $(".first-question").hide();
         $(".btn-choice-round-2").show();
@@ -204,10 +208,14 @@ $(document).ready(function () {
         $(".quiz-is-over").show();
         $("#progress").hide();
         $(".quiz-title").text("Quiz is over!");
-
+        $(".quiz-timer").hide();
+        $(".timerEquals").hide();
 
         clearTimeout(timerId);
-        console.log("This is 5", timeLeft);
+        console.log(timeLeft);
+
+
+        $("#quizFinalScore").text("Your final score is " + parseInt(timeLeft + 1));
 
 
         // We get the value associated with the button the user picked from here
@@ -218,12 +226,14 @@ $(document).ready(function () {
         if (parseInt(userPick) === questionAnswerRoundFive[0].answer) {
             $("#progress").text("correct.");
             score++;
-            $(".quizFinalScore").text("Your final score is " + score + " /5" + " + " + timer);
 
-            $(".score").text("score = " + score + "/5");
-            console.log(score);
-            console.log(scoreTime);
+            console.log(timeLeft);
+
+            var finalTimeScore = "Your final score is " + parseInt(timeLeft + 1)
+            $(".score").text(finalTimeScore);
         }
+        var lastUser = JSON.parse(localStorage.getItem("userData"));
+
         // Submit Button
         $(".userSubmit").on("click", function (event) {
             event.preventDefault();
@@ -233,45 +243,69 @@ $(document).ready(function () {
             $(".timerEquals").hide();
             $(".highscores").show();
             $(".quiz-title").text("Quiz");
-            var userInitials = document.querySelector(".myInitials").value;
+            var userInitials = document.querySelector(".myInitials");
+            console.log('new initials: ' + userInitials);
+            console.log(timeLeft);
 
-            console.log('new initials: ' + userInitials)
+            var userData = {
+                userInials: userInitials.value,
+                score: timeLeft
+              };
 
-            
-            
+              console.log(userData);
+              localStorage.setItem("userData", JSON.stringify(userData));
+
             // HighScores Page
-            var currentInitialsValue = localStorage.getItem("userInitials");
-            localStorage.setItem("userInitials", (currentInitialsValue + userInitials));
+        
+              lastUser = JSON.parse(localStorage.getItem("userData"));
+              var textEntered = document.querySelector(".highscores-text");
+              textEntered.textContent=lastUser.userInials + " " + "final score: " + lastUser.score;
+            //   var li = document.createElement("li");
+            //     li.innerHTML = lastUser.userInials;
 
-            var highScoresInput = localStorage.getItem("userInitials");
-            console.log(highScoresInput)
-            var textEntered = document.querySelector(".highscores-text");
-            textEntered.value = highScoresInput;
-            console.log('text entered' + textEntered.value);
+                
+                // $(".test").append(li)
+            //   var people = [{ name: "Bob" }];
+            // var currentId = 0;
+              
+              function addToHighScores() {
+                lastUser = JSON.parse(localStorage.getItem("userData"));
+                var li = document.createElement("li");
+                li.innerHTML = textEntered.textContent=lastUser.userInials + " " + lastUser.score;
+                console.log(li.innerHTML);
+                $(".test").append(li);
+                
+                
+                
+                // 
+                // peopleListEl.append(li);
+              }
+
+              $(".add-to-scores").on("click", function(){
+                
+                addToHighScores();
+            
+              });
+
 
 
             //clear High Scores
-            $(".clear-high-scores").on("click", function (){
+            $(".clear-high-scores").on("click", function () {
                 textEntered.value = "";
                 localStorage.clear()
             })
 
+            //go back to the start
+            $(".startQuizOverButton").on("click", function() {
+                $(".highscores").hide();
+                $(".my-starter-page").show();
+                countdown();
+            })
+
+
+
         });
 
-
-        // userInitials = document.querySelector(".myInitials").value;
-        //$(".highscores-text").text(userInitials);
-
-        //$(".highscores-text").text(highScoresInput);
-
-
-
-        //     $(".startQuizOverButton").on("click", function () {
-        //         $(".highscores").hide();
-        //         $(".quiz-title").hide();
-        //         $(".bigBox").hide();
-        //         $(".my-starter-page").show();
-        //     })
 
     });
 
