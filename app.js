@@ -277,6 +277,7 @@ $(document).ready(function() {
             $(".timerEquals").hide();
             $(".highscores").show();
             $(".quiz-title").text("Quiz");
+            // addToHighScores();
             var userInitials = document.querySelector(".myInitials");
             console.log('new initials: ' + userInitials);
             console.log(timeLeft);
@@ -287,36 +288,61 @@ $(document).ready(function() {
             };
 
             console.log(userData);
-            localStorage.setItem("userData", JSON.stringify(userData));
+            var array = localStorage.getItem("userData");
+            if (array==undefined){
+                array="[]"
+            }
+            var userArray = JSON.parse(localStorage.getItem("userData"))||[];
+
+            console.log("HHH 0", userArray)
+            // 1. Get array from LocalStorage. If null, create emtpy Array
+            // 2. Push user to array
+
+            console.log("Jack 0", userArray)
+            userArray.push(userData);
+            console.log("Jack 1", userArray)
+            console.log("HHH 1")
+            // 3. stringfy array
+            console.log("Jack 2", userArray)
+            localStorage.setItem("userData", JSON.stringify(userArray));
+            // 4. st array to localstorage
+
+            $(".insertDiv").empty()
+            userArray.forEach(function(element){
+                var liTag = $("<li>");
+                console.log(element.userInials);
+                liTag.textContent=element.userInials + " scored " + element.score;
+                $(".insertDiv").append(liTag.textContent);
+
+            })
+
+            console.log("HHH 2")
 
             // HighScores Page
+            // var textEntered = document.querySelector(".highscores-text");
+            // textEntered.textContent = userArray + " " + " - final score: " + userArray.score;
 
-            lastUser = JSON.parse(localStorage.getItem("userData"));
-            var textEntered = document.querySelector(".highscores-text");
-            textEntered.textContent = lastUser.userInials + " " + " - final score: " + lastUser.score;
+            // function addToHighScores() {
+            //     var para = document.createElement("p");
+            //     $(".insertDiv").append(para);
+            //     para.innerHTML = textEntered.textContent
+            //     console.log(para.innerHTML);
 
-            function addToHighScores() {
-                var para = document.createElement("p");
-                $(".insert").append(para);
-                para.innerHTML = textEntered.textContent
-                console.log(para.innerHTML);
+            //     $(".highscores-text").text("");
+            //     userInitials.textContent = "";
+            // }
 
-
-
-                $(".highscores-text").text("");
-                userInitials.textContent = "";
-
-            }
-
-            $(".add-to-scores").on("click", function() {
-                addToHighScores();
-            });
+            // $(".add-to-scores").on("click", function() {
+            //     addToHighScores();
+            // });
 
             //clear High Scores
             $(".clear-high-scores").on("click", function() {
-                textEntered.value = "";
-                localStorage.clear()
-                $(".insert").text("High Scores");
+                // textEntered.value = "";
+                window.localStorage.removeItem("userData");
+                window.location.reload();
+                
+                // $(".insert").text("High Scores");
             })
 
             //go back to the start
