@@ -1,9 +1,7 @@
-
-$(document).ready(function () {
+$(document).ready(function() {
 
     //timer
     var timeLeft = 75;
-    var elem = document.getElementById('quiz-timer');
     var timerId = setInterval(countdown, 1000);
 
     function countdown() {
@@ -15,26 +13,21 @@ $(document).ready(function () {
         }
     }
 
-    $(".startQuizButton").on("click", function () {
+    function reset() {
+        timeLeft = 75;
+        timerId = setInterval(countdown, 1000);
+    }
+
+
+    $(".startQuizButton").on("click", function() {
         $(".my-starter-page").hide();
         $(".quiz-has-started").show();
         resetAllViews();
-        var timeLeft = 75;
-        var elem = document.getElementById('quiz-timer');
-        var timerId = setInterval(countdown, 1000);
-
-        function newCountdown() {
-            if (timeLeft == 0) {
-                clearTimeout(timerId);
-            } else {
-                $(".quiz-timer").text(timeLeft + ' seconds remaining');
-                timeLeft--;
-            }
-        }
-        newCountdown();
+        countdown();
 
 
     })
+
     function resetAllViews() {
         $(".quiz-has-started").show();
         $(".quiz-title").show();
@@ -57,30 +50,26 @@ $(document).ready(function () {
 
     }
 
-    var questionAnswerRoundOne = [
-        {
-            "question": "Commonly used data types DO NOT inlcude:",
-            "choices": ["strings", "booleans", "alerts", "numbers"],
-            "answer": 2
-        }];
-    var questionAnswerRoundTwo = [
-        {
-            "question": "What is a communication device?",
-            "choices": ["door", "hat", "dest", "phone"],
-            "answer": 3
-        }];
-    var questionAnswerRoundThree = [
-        {
-            "question": "What do phones do?",
-            "choices": ["make calls", "eat pasta", "drink wine", "vacuum"],
-            "answer": 0
-        }];
-    var questionAnswerRoundFour = [
-        {
-            "question": "What do you find at the beach?",
-            "choices": ["fix cars", "make pies", "learn code", "sand"],
-            "answer": 3
-        }];
+    var questionAnswerRoundOne = [{
+        "question": "Commonly used data types DO NOT inlcude:",
+        "choices": ["strings", "booleans", "alerts", "numbers"],
+        "answer": 2
+    }];
+    var questionAnswerRoundTwo = [{
+        "question": "What is a communication device?",
+        "choices": ["door", "hat", "dest", "phone"],
+        "answer": 3
+    }];
+    var questionAnswerRoundThree = [{
+        "question": "What do phones do?",
+        "choices": ["make calls", "eat pasta", "drink wine", "vacuum"],
+        "answer": 0
+    }];
+    var questionAnswerRoundFour = [{
+        "question": "What do you find at the beach?",
+        "choices": ["fix cars", "make pies", "learn code", "sand"],
+        "answer": 3
+    }];
     var questionAnswerRoundFive = [{
         "question": "Inside which HTML element do we put the JavaScript?",
         "choices": ["<javascript>", "<html>", "<script>", "<js>"],
@@ -123,7 +112,7 @@ $(document).ready(function () {
 
 
     // User Answers Round-1
-    $(".btn-choice-round-1").on("click", function () {
+    $(".btn-choice-round-1").on("click", function() {
         $("#first").hide();
         $(".first-question").hide();
         $(".btn-choice-round-2").show();
@@ -159,7 +148,7 @@ $(document).ready(function () {
     })
 
     // User Answers Round-2
-    $(".btn-choice-round-2").on("click", function () {
+    $(".btn-choice-round-2").on("click", function() {
         $("#second").hide();
         $(".second-question").hide();
         $(".btn-choice-round-3").show();
@@ -180,7 +169,8 @@ $(document).ready(function () {
             $("#progress").text("correct.");
             score++;
 
-            $(".score").text("questions correct = " + score + "/5"); ("score = " + score + "/5");
+            $(".score").text("questions correct = " + score + "/5");
+            ("score = " + score + "/5");
             console.log(score);
         }
         // If the numbers did not match. You also let them know
@@ -191,7 +181,7 @@ $(document).ready(function () {
     })
 
     // User Answers Round-3
-    $(".btn-choice-round-3").on("click", function () {
+    $(".btn-choice-round-3").on("click", function() {
         $("#third").hide();
         $(".third-question").hide();
         $(".btn-choice-round-4").show();
@@ -219,35 +209,35 @@ $(document).ready(function () {
     })
 
     // User Answers Round-4
-    $(".btn-choice-round-4").on("click", function () {
-        $("#forth").hide();
-        $(".forth-question").hide();
-        $(".btn-choice-round-5").show();
-        $("#fifth").show();
-        $(".fifth-question").show();
-        $(".buttons").show();
-        $("#fifth").show();
+    $(".btn-choice-round-4").on("click", function() {
+            $("#forth").hide();
+            $(".forth-question").hide();
+            $(".btn-choice-round-5").show();
+            $("#fifth").show();
+            $(".fifth-question").show();
+            $(".buttons").show();
+            $("#fifth").show();
 
-        // We get the value associated with the button the user picked from here
-        var userPick = $(this).val();
-        console.log("user Pick: " + userPick);
+            // We get the value associated with the button the user picked from here
+            var userPick = $(this).val();
+            console.log("user Pick: " + userPick);
 
-        // If user picks matched the right answer
-        if (parseInt(userPick) === questionAnswerRoundFour[0].answer) {
-            $("#progress").text("correct.");
-            score++;
+            // If user picks matched the right answer
+            if (parseInt(userPick) === questionAnswerRoundFour[0].answer) {
+                $("#progress").text("correct.");
+                score++;
 
-            $(".score").text("questions correct = " + score + "/5");
-            console.log(score);
-        }
-        // If the numbers did not match. You also let them know
-        else {
-            $("#progress").text("wrong!");
-            penalty();
-        }
-    })
-    // User Answers Round-5
-    $(".btn-choice-round-5").on("click", function () {
+                $(".score").text("questions correct = " + score + "/5");
+                console.log(score);
+            }
+            // If the numbers did not match. You also let them know
+            else {
+                $("#progress").text("wrong!");
+                penalty();
+            }
+        })
+        // User Answers Round-5
+    $(".btn-choice-round-5").on("click", function() {
         $(".buttons").hide();
         $(".quiz-is-over").show();
         $("#progress").hide();
@@ -279,7 +269,7 @@ $(document).ready(function () {
         var lastUser = JSON.parse(localStorage.getItem("userData"));
 
         // Submit Button
-        $(".userSubmit").on("click", function (event) {
+        $(".userSubmit").on("click", function(event) {
             event.preventDefault();
             $(".quiz-is-over").hide();
             $(".quiz-timer").hide();
@@ -318,26 +308,26 @@ $(document).ready(function () {
 
             }
 
-            $(".add-to-scores").on("click", function () {
+            $(".add-to-scores").on("click", function() {
                 addToHighScores();
             });
 
             //clear High Scores
-            $(".clear-high-scores").on("click", function () {
+            $(".clear-high-scores").on("click", function() {
                 textEntered.value = "";
                 localStorage.clear()
                 $(".insert").text("High Scores");
             })
 
             //go back to the start
-            $(".startQuizOverButton").on("click", function () {
+            $(".startQuizOverButton").on("click", function() {
                 $(".highscores").hide();
                 $(".my-starter-page").show();
                 $(".bigBox").show();
                 $(".quiz-title").hide();
                 clearTimeout(timerId);
                 timeLeft = 75;
-                countdown();
+                reset();
             })
 
 
@@ -352,4 +342,3 @@ $(document).ready(function () {
     };
 
 });
-
