@@ -19,7 +19,19 @@ $(document).ready(function () {
         $(".my-starter-page").hide();
         $(".quiz-has-started").show();
         resetAllViews();
-        countdown();
+        var timeLeft = 75;
+        var elem = document.getElementById('quiz-timer');
+        var timerId = setInterval(countdown, 1000);
+
+        function newCountdown() {
+            if (timeLeft == 0) {
+                clearTimeout(timerId);
+            } else {
+                $(".quiz-timer").text(timeLeft + ' seconds remaining');
+                timeLeft--;
+            }
+        }
+        newCountdown();
 
 
     })
@@ -42,7 +54,6 @@ $(document).ready(function () {
         $("#fifth").hide();
         $(".btn-choice-round-1").show();
         $(".quiz-has-started").show()
-        countdown()
 
     }
 
@@ -169,7 +180,7 @@ $(document).ready(function () {
             $("#progress").text("correct.");
             score++;
 
-            $(".score").text("questions correct = " + score + "/5");("score = " + score + "/5");
+            $(".score").text("questions correct = " + score + "/5"); ("score = " + score + "/5");
             console.log(score);
         }
         // If the numbers did not match. You also let them know
@@ -295,15 +306,15 @@ $(document).ready(function () {
             textEntered.textContent = lastUser.userInials + " " + " - final score: " + lastUser.score;
 
             function addToHighScores() {
-                var li = document.createElement("li");
-                $(".test").append(li);
-                li.innerHTML = textEntered.textContent
-                console.log(li.innerHTML);
-                    
-            
-                
+                var para = document.createElement("p");
+                $(".insert").append(para);
+                para.innerHTML = textEntered.textContent
+                console.log(para.innerHTML);
+
+
+
                 $(".highscores-text").text("");
-                userInitials.textContent="";
+                userInitials.textContent = "";
 
             }
 
@@ -315,7 +326,7 @@ $(document).ready(function () {
             $(".clear-high-scores").on("click", function () {
                 textEntered.value = "";
                 localStorage.clear()
-                $(".test").text("High Scores");
+                $(".insert").text("High Scores");
             })
 
             //go back to the start
