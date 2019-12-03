@@ -26,7 +26,7 @@ $(document).ready(function() {
         countdown();
 
 
-    })
+    });
 
     function resetAllViews() {
         $(".quiz-has-started").show();
@@ -46,7 +46,7 @@ $(document).ready(function() {
         $(".btn-choice btn-choice-round-5").hide();
         $("#fifth").hide();
         $(".btn-choice-round-1").show();
-        $(".quiz-has-started").show()
+        $(".quiz-has-started").show();
 
     }
 
@@ -145,7 +145,7 @@ $(document).ready(function() {
             //rendertime()
             //need to deduct time
         }
-    })
+    });
 
     // User Answers Round-2
     $(".btn-choice-round-2").on("click", function() {
@@ -178,7 +178,7 @@ $(document).ready(function() {
             $("#progress").text("wrong!");
             timeLeft -= 10;
         }
-    })
+    });
 
     // User Answers Round-3
     $(".btn-choice-round-3").on("click", function() {
@@ -206,37 +206,37 @@ $(document).ready(function() {
             $("#progress").text("wrong!");
             timeLeft -= 10;
         }
-    })
+    });
 
     // User Answers Round-4
     $(".btn-choice-round-4").on("click", function() {
-            $("#forth").hide();
-            $(".forth-question").hide();
-            $(".btn-choice-round-5").show();
-            $("#fifth").show();
-            $(".fifth-question").show();
-            $(".buttons").show();
-            $("#fifth").show();
+        $("#forth").hide();
+        $(".forth-question").hide();
+        $(".btn-choice-round-5").show();
+        $("#fifth").show();
+        $(".fifth-question").show();
+        $(".buttons").show();
+        $("#fifth").show();
 
-            // We get the value associated with the button the user picked from here
-            var userPick = $(this).val();
-            // console.log("user Pick: " + userPick);
+        // We get the value associated with the button the user picked from here
+        var userPick = $(this).val();
+        // console.log("user Pick: " + userPick);
 
-            // If user picks matched the right answer
-            if (parseInt(userPick) === questionAnswerRoundFour[0].answer) {
-                $("#progress").text("correct.");
-                score++;
+        // If user picks matched the right answer
+        if (parseInt(userPick) === questionAnswerRoundFour[0].answer) {
+            $("#progress").text("correct.");
+            score++;
 
-                $(".score").text("questions correct = " + score + "/5");
-                // console.log(score);
-            }
-            // If the numbers did not match. You also let them know
-            else {
-                $("#progress").text("wrong!");
-                penalty();
-            }
-        })
-        // User Answers Round-5
+            $(".score").text("questions correct = " + score + "/5");
+            // console.log(score);
+        }
+        // If the numbers did not match. You also let them know
+        else {
+            $("#progress").text("wrong!");
+            penalty();
+        }
+    });
+    // User Answers Round-5
     $(".btn-choice-round-5").on("click", function() {
         $(".buttons").hide();
         $(".quiz-is-over").show();
@@ -267,111 +267,112 @@ $(document).ready(function() {
             $(".score").text(finalTimeScore);
         }
         var lastUser = JSON.parse(localStorage.getItem("userData"));
-    })
-        // Submit Button
-        $(".userSubmit").on("click", function(event) {
-            event.preventDefault();
-            $(".quiz-is-over").hide();
-            $(".quiz-timer").hide();
-            $(".score").hide();
-            $(".timerEquals").hide();
-            $(".highscores").show();
-            $(".quiz-title").text("Quiz");
-            // addToHighScores();
-            var userInitials = document.querySelector(".myInitials");
-            // console.log('new initials: ' + userInitials);
-            // console.log(timeLeft);
-            
-            var userArray = JSON.parse(localStorage.getItem("userData"))||[];
+    });
+    // Submit Button
+    $(".userSubmit").on("click", function(event) {
+        event.preventDefault();
+        $(".quiz-is-over").hide();
+        $(".quiz-timer").hide();
+        $(".score").hide();
+        $(".timerEquals").hide();
+        $(".highscores").show();
+        $(".quiz-title").text("Quiz");
+        // addToHighScores();
+        var userInitials = document.querySelector(".myInitials");
+        // console.log('new initials: ' + userInitials);
+        // console.log(timeLeft);
 
-            var userData = {
-                userInials: userInitials.value,
-                score: timeLeft
-            };
+        var userArray = JSON.parse(localStorage.getItem("userData")) || [];
 
-            // console.log(userData);
-            // var array = localStorage.getItem("userData");
-            // if (array==undefined){
-            //     array="[]"
-            // }
-            
+        var userData = {
+            userInials: userInitials.value,
+            score: timeLeft
+        };
 
-            // console.log("HHH 0", userArray)
-            // 1. Get array from LocalStorage. If null, create emtpy Array
-            // 2. Push user to array
-
-            // console.log("Jack 0", userArray)
-            console.log(userArray);
-            userArray.push(userData);
-            console.log(userArray);
-
-            // console.log("Jack 1", userArray)
-            // console.log("HHH 1")
-            // 3. stringfy array
-            // console.log("Jack 2", userArray)
-
-            localStorage.setItem("userData", JSON.stringify(userArray));
-
-            // 4. st array to localstorage
-
-            $(".insertDiv").empty()
-            userArray.forEach(function(element){
-                var liTag = $("<li>");
-                // console.log(element.userInials);
-                liTag.textContent=element.userInials + " scored " + element.score;
-                $(".insertDiv").append(liTag.textContent);
-
-            })
-
-            // console.log("HHH 2")
-
-            // HighScores Page
-            // var textEntered = document.querySelector(".highscores-text");
-            // textEntered.textContent = userArray + " " + " - final score: " + userArray.score;
-
-            // function addToHighScores() {
-            //     var para = document.createElement("p");
-            //     $(".insertDiv").append(para);
-            //     para.innerHTML = textEntered.textContent
-            //     console.log(para.innerHTML);
-
-            //     $(".highscores-text").text("");
-            //     userInitials.textContent = "";
-            // }
-
-            // $(".add-to-scores").on("click", function() {
-            //     addToHighScores();
-            // });
-
-            //clear High Scores
-            $(".clear-high-scores").on("click", function() {
-                // textEntered.value = "";
-                window.localStorage.removeItem("userData");
-                window.location.reload();
-                
-                // $(".insert").text("High Scores");
-            })
-
-            //go back to the start
-            $(".startQuizOverButton").on("click", function() {
-                $(".highscores").hide();
-                $(".my-starter-page").show();
-                $(".bigBox").show();
-                $(".quiz-title").hide();
-                clearTimeout(timerId);
-                timeLeft = 75;
-                reset();
-            })
+        // console.log(userData);
+        // var array = localStorage.getItem("userData");
+        // if (array==undefined){
+        //     array="[]"
+        // }
 
 
+        // console.log("HHH 0", userArray)
+        // 1. Get array from LocalStorage. If null, create emtpy Array
+        // 2. Push user to array
+
+        // console.log("Jack 0", userArray)
+        console.log(userArray);
+        userArray.push(userData);
+        console.log(userArray);
+
+        // console.log("Jack 1", userArray)
+        // console.log("HHH 1")
+        // 3. stringfy array
+        // console.log("Jack 2", userArray)
+
+        localStorage.setItem("userData", JSON.stringify(userArray));
+
+        // 4. st array to localstorage
+
+        $(".insertDiv").empty()
+        userArray.forEach(function(element) {
+            var liTag = $("<li>");
+            // console.log(element.userInials);
+            liTag.textContent = element.userInials + " scored " + element.score;
+            $(".insertDiv").append(liTag.textContent);
+            $(".insertDiv").append("<br>");
 
         });
+
+        // console.log("HHH 2")
+
+        // HighScores Page
+        // var textEntered = document.querySelector(".highscores-text");
+        // textEntered.textContent = userArray + " " + " - final score: " + userArray.score;
+
+        // function addToHighScores() {
+        //     var para = document.createElement("p");
+        //     $(".insertDiv").append(para);
+        //     para.innerHTML = textEntered.textContent
+        //     console.log(para.innerHTML);
+
+        //     $(".highscores-text").text("");
+        //     userInitials.textContent = "";
+        // }
+
+        // $(".add-to-scores").on("click", function() {
+        //     addToHighScores();
+        // });
+
+        //clear High Scores
+        $(".clear-high-scores").on("click", function() {
+            // textEntered.value = "";
+            window.localStorage.removeItem("userData");
+            window.location.reload();
+
+            // $(".insert").text("High Scores");
+        });
+
+        //go back to the start
+        $(".startQuizOverButton").on("click", function() {
+            $(".highscores").hide();
+            $(".my-starter-page").show();
+            $(".bigBox").show();
+            $(".quiz-title").hide();
+            clearTimeout(timerId);
+            timeLeft = 75;
+            reset();
+        });
+
+
+
+    });
 
 
 
 
     function penalty() {
         timeLeft -= 10;
-    };
+    }
 
 });
