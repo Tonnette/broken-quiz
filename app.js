@@ -127,7 +127,7 @@ $(document).ready(function() {
 
         // We get the value associated with the button the user picked from here
         var userPick = $(this).val();
-        console.log("user Pick: " + userPick);
+        // console.log("user Pick: " + userPick);
 
         // If user picks matched the right answer
         if (parseInt(userPick) === questionAnswerRoundOne[0].answer) {
@@ -135,7 +135,7 @@ $(document).ready(function() {
             score++;
 
             $(".score").text("questions correct = " + score + "/5");
-            console.log(score);
+            // console.log(score);
         }
         // If the numbers did not match. You also let them know
         else {
@@ -162,7 +162,7 @@ $(document).ready(function() {
 
         // We get the value associated with the button the user picked from here
         var userPick = $(this).val();
-        console.log("user Pick: " + userPick);
+        // console.log("user Pick: " + userPick);
 
         // If user picks matched the right answer
         if (parseInt(userPick) === questionAnswerRoundTwo[0].answer) {
@@ -171,7 +171,7 @@ $(document).ready(function() {
 
             $(".score").text("questions correct = " + score + "/5");
             ("score = " + score + "/5");
-            console.log(score);
+            // console.log(score);
         }
         // If the numbers did not match. You also let them know
         else {
@@ -191,7 +191,7 @@ $(document).ready(function() {
 
         // We get the value associated with the button the user picked from here
         var userPick = $(this).val();
-        console.log("user Pick: " + userPick);
+        // console.log("user Pick: " + userPick);
 
         // If user picks matched the right answer
         if (parseInt(userPick) === questionAnswerRoundThree[0].answer) {
@@ -199,7 +199,7 @@ $(document).ready(function() {
             score++;
 
             $(".score").text("questions correct = " + score + "/5");
-            console.log(score);
+            // console.log(score);
         }
         // If the numbers did not match. You also let them know
         else {
@@ -220,7 +220,7 @@ $(document).ready(function() {
 
             // We get the value associated with the button the user picked from here
             var userPick = $(this).val();
-            console.log("user Pick: " + userPick);
+            // console.log("user Pick: " + userPick);
 
             // If user picks matched the right answer
             if (parseInt(userPick) === questionAnswerRoundFour[0].answer) {
@@ -228,7 +228,7 @@ $(document).ready(function() {
                 score++;
 
                 $(".score").text("questions correct = " + score + "/5");
-                console.log(score);
+                // console.log(score);
             }
             // If the numbers did not match. You also let them know
             else {
@@ -246,7 +246,7 @@ $(document).ready(function() {
         $(".timerEquals").hide();
 
         clearTimeout(timerId);
-        console.log(timeLeft);
+        // console.log(timeLeft);
 
 
         $("#quizFinalScore").text("Your final score is " + parseInt(timeLeft + 1));
@@ -254,7 +254,7 @@ $(document).ready(function() {
 
         // We get the value associated with the button the user picked from here
         var userPick = $(this).val();
-        console.log("user Pick: " + userPick);
+        // console.log("user Pick: " + userPick);
 
         // If user picks matched the right answer
         if (parseInt(userPick) === questionAnswerRoundFive[0].answer) {
@@ -267,7 +267,7 @@ $(document).ready(function() {
             $(".score").text(finalTimeScore);
         }
         var lastUser = JSON.parse(localStorage.getItem("userData"));
-
+    })
         // Submit Button
         $(".userSubmit").on("click", function(event) {
             event.preventDefault();
@@ -279,44 +279,51 @@ $(document).ready(function() {
             $(".quiz-title").text("Quiz");
             // addToHighScores();
             var userInitials = document.querySelector(".myInitials");
-            console.log('new initials: ' + userInitials);
-            console.log(timeLeft);
+            // console.log('new initials: ' + userInitials);
+            // console.log(timeLeft);
+            
+            var userArray = JSON.parse(localStorage.getItem("userData"))||[];
 
             var userData = {
                 userInials: userInitials.value,
                 score: timeLeft
             };
 
-            console.log(userData);
-            var array = localStorage.getItem("userData");
-            if (array==undefined){
-                array="[]"
-            }
-            var userArray = JSON.parse(localStorage.getItem("userData"))||[];
+            // console.log(userData);
+            // var array = localStorage.getItem("userData");
+            // if (array==undefined){
+            //     array="[]"
+            // }
+            
 
-            console.log("HHH 0", userArray)
+            // console.log("HHH 0", userArray)
             // 1. Get array from LocalStorage. If null, create emtpy Array
             // 2. Push user to array
 
-            console.log("Jack 0", userArray)
+            // console.log("Jack 0", userArray)
+            console.log(userArray);
             userArray.push(userData);
-            console.log("Jack 1", userArray)
-            console.log("HHH 1")
+            console.log(userArray);
+
+            // console.log("Jack 1", userArray)
+            // console.log("HHH 1")
             // 3. stringfy array
-            console.log("Jack 2", userArray)
+            // console.log("Jack 2", userArray)
+
             localStorage.setItem("userData", JSON.stringify(userArray));
+
             // 4. st array to localstorage
 
             $(".insertDiv").empty()
             userArray.forEach(function(element){
                 var liTag = $("<li>");
-                console.log(element.userInials);
+                // console.log(element.userInials);
                 liTag.textContent=element.userInials + " scored " + element.score;
                 $(".insertDiv").append(liTag.textContent);
 
             })
 
-            console.log("HHH 2")
+            // console.log("HHH 2")
 
             // HighScores Page
             // var textEntered = document.querySelector(".highscores-text");
@@ -361,7 +368,7 @@ $(document).ready(function() {
         });
 
 
-    });
+
 
     function penalty() {
         timeLeft -= 10;
